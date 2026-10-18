@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aniimo Map Checker</title>
+    <title>Aniimo Egg Map</title>
     <link rel="icon" type="image/png" href="/404/logo.png" />
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -214,12 +214,6 @@
                     <input type="url" id="newEntranceImg" required placeholder="https://..."
                         class="w-full bg-[#0f0f11] border border-[#27272a] rounded-lg px-3 py-2 text-white placeholder-zinc-500 focus:outline-none focus:border-amber-500">
                 </div>
-                <div class="flex items-center space-x-2 pt-1">
-                    <input type="checkbox" id="newRarer" class="accent-amber-500 rounded w-4 h-4 cursor-pointer">
-                    <label for="newRarer" class="text-zinc-300 cursor-pointer font-medium">Nhãn RARER (Layout
-                        Hiếm)</label>
-                </div>
-
                 <div class="pt-3 flex justify-end space-x-2">
                     <button type="button" id="cancelAddBtn"
                         class="bg-[#27272a] hover:bg-[#3f3f46] text-white px-4 py-2 rounded-xl text-xs font-medium transition">Hủy</button>
@@ -240,11 +234,6 @@
                 isCustom: false,
                 name: "Layout 1",
                 entranceDesc: "#",
-                keys: 2,
-                doors: 4,
-                portals: 1,
-                chests: 9,
-                rarer: false,
                 entranceImg: "./img/1.1.png",
                 fullImg: "./img/1.2.png"
             },
@@ -253,11 +242,6 @@
                 isCustom: false,
                 name: "Layout 2",
                 entranceDesc: "#",
-                keys: 2,
-                doors: 5,
-                portals: 1,
-                chests: 12,
-                rarer: false,
                 entranceImg: "./img/2.1.png",
                 fullImg: "./img/2.2.png"
             },
@@ -266,11 +250,6 @@
                 isCustom: false,
                 name: "Layout 3",
                 entranceDesc: "#",
-                keys: 3,
-                doors: 5,
-                portals: 1,
-                chests: 11,
-                rarer: false,
                 entranceImg: "./img/3.1.png",
                 fullImg: "./img/3.2.png"
             },
@@ -279,11 +258,6 @@
                 isCustom: false,
                 name: "Layout 4",
                 entranceDesc: "#",
-                keys: 2,
-                doors: 4,
-                portals: 3,
-                chests: 7,
-                rarer: true,
                 entranceImg: "./img/4.1.png",
                 fullImg: "./img/4.2.png"
             },
@@ -292,11 +266,6 @@
                 isCustom: false,
                 name: "Layout 5",
                 entranceDesc: "#",
-                keys: 3,
-                doors: 3,
-                portals: 4,
-                chests: 10,
-                rarer: true,
                 entranceImg: "./img/5.1.png",
                 fullImg: "./img/5.2.png"
             },
@@ -305,11 +274,6 @@
                 isCustom: false,
                 name: "Layout 6",
                 entranceDesc: "#",
-                keys: 2,
-                doors: 3,
-                portals: 3,
-                chests: 10,
-                rarer: false,
                 entranceImg: "./img/6.1.png",
                 fullImg: "./img/6.2.png"
             },
@@ -318,11 +282,6 @@
                 isCustom: false,
                 name: "Layout 7",
                 entranceDesc: "#",
-                keys: 2,
-                doors: 5,
-                portals: 2,
-                chests: 9,
-                rarer: false,
                 entranceImg: "./img/7.1.png",
                 fullImg: "./img/7.2.png"
             }
@@ -518,24 +477,14 @@
             handleAddLayout() {
                 const name = document.getElementById('newMapName').value.trim();
                 const entranceDesc = document.getElementById('newEntranceDesc').value.trim();
-                const keys = parseInt(document.getElementById('newKeys').value) || 0;
-                const doors = parseInt(document.getElementById('newDoors').value) || 0;
-                const portals = parseInt(document.getElementById('newPortals').value) || 0;
-                const chests = parseInt(document.getElementById('newChests').value) || 0;
                 const fullImg = document.getElementById('newFullImg').value.trim();
                 const entranceImg = document.getElementById('newEntranceImg').value.trim();
-                const rarer = document.getElementById('newRarer').checked;
 
                 const newLayout = {
                     id: 'custom_' + Date.now(),
                     isCustom: true,
                     name,
                     entranceDesc,
-                    keys,
-                    doors,
-                    portals,
-                    chests,
-                    rarer,
                     entranceImg,
                     fullImg
                 };
@@ -608,15 +557,6 @@
                                 <div>
                                     <h2 class="text-base font-extrabold text-white tracking-wide group-hover:text-amber-400 transition truncate">${map.name}</h2>
                                     <p class="text-xs text-zinc-400 font-medium line-clamp-2 mt-0.5" title="${map.entranceDesc}">${map.entranceDesc}</p>
-                                </div>
-                                
-                                <!-- Stats Indicators -->
-                                <div class="pt-2 flex items-center flex-wrap gap-2 text-[11px] text-zinc-300 font-mono">
-                                    ${map.rarer ? '<span class="bg-amber-500/20 text-amber-400 border border-amber-500/40 px-1.5 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider font-sans">rarer</span>' : ''}
-                                    <span class="flex items-center text-zinc-400"><i class="fa-solid fa-key text-amber-400 text-[10px] mr-1"></i> ${map.keys}</span>
-                                    <span class="flex items-center text-zinc-400"><i class="fa-solid fa-door-closed text-blue-400 text-[10px] mr-1"></i> ${map.doors}</span>
-                                    <span class="flex items-center text-zinc-400"><i class="fa-solid fa-vortex text-purple-400 text-[10px] mr-1"></i> ${map.portals}</span>
-                                    <span class="flex items-center text-zinc-400"><i class="fa-solid fa-box text-amber-500 text-[10px] mr-1"></i> ${map.chests}</span>
                                 </div>
                             </div>
 

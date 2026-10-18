@@ -606,6 +606,18 @@
             window.aniimoApp = new AniimoMapApp();
         });
     </script>
+
+    <p id="credits" style="text-align: center;">
+        Copyrights © <span id="current-year"></span> <a href="https://zxc.io.vn/" target="_blank"
+            rel="noopener noreferrer" style="color: #3cced8; text-decoration: none;">Hoàng Tuân</a>
+    </p>
+    <script>
+        const yearSpan = document.getElementById('current-year');
+        if (yearSpan) {
+            const currentYear = new Date().getFullYear();
+            yearSpan.textContent = currentYear;
+        }
+    </script>
 </body>
 
 </html>
